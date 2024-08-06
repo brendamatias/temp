@@ -1,0 +1,145 @@
+/* Container */
+.container .h4   {
+  text-align: center;
+  color: var(--dark);
+  margin-top: 15px;
+}
+
+/* Produtos Grid */
+.product {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 1rem;
+  width: 1100px;
+  margin: 2rem auto;
+}
+
+/* Estilos para Card */
+.card {
+  overflow: hidden;
+  background-color: var(--dark) !important;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-img {
+  border: 2px solid var(--primary);
+  border-radius: 0.3rem;
+  height: 230px;
+  object-fit: cover;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Informações do Produto */
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.title {
+  color: var(--primary);
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.price {
+  color: #ccc;
+  font-weight: 600;
+  padding: 2px;
+}
+
+/* Botão no Card */
+.card button {
+  margin-top: 1.875rem;
+  padding: 0.625rem 1.875rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+/*========MODAL===========*/
+
+.detail-container {
+  background-color: var(--white);
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  border: 2px solid var(--primary);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.875rem;
+  transition: all 0.5s ease;
+}
+
+.detail-contant {
+  max-width: 100%;
+}
+
+/* Estilo do Botão de Fechar no Modal */
+.close {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: none;
+}
+
+.detail-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.img-card img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-title {
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.modal-price {
+  color: var(--primary);
+  font-weight: 300;
+}
+
+.modal-desc {
+  font-weight: 300;
+  line-height: 2;
+}
+
+/* Botão no Modal */
+.product-detail button {
+  color: var(--primary);
+  font-weight: 300;
+  margin-top: 1.25rem;
+  padding: 0.625rem 1.875rem;
+  border: none;
+  outline: none;
+  border: 1px solid var(--primary);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
