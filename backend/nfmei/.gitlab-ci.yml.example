@@ -1,0 +1,106 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - when: always
+
+stages:
+  - install
+  - lint
+  - build
+  - test
+  - e2e
+  - migrate
+
+image: node:20
+
+services:
+  - name: postgres:16
+    alias: postgres
+
+variables:
+  NODE_ENV: "test"
+  DB_HOST: "postgres"
+  DB_PORT: "5432"
+  DB_USER: "ci"
+  DB_PASS: "ci"
+  DB_NAME: "app_test"
+  JWT_SECRET: "testing-secret"
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm/
+
+before_script:
+  - apt-get update -y
+  - apt-get install -y postgresql-client
+  - node -v
+  - npm -v
+
+.before_db: &before_db
+  - |
+    for i in {1..90}; do
+      pg_isready -h "$DB_HOST" -p "$DB_PORT" && break
+      echo "Aguardando Postgres... ($i/90)"
+      sleep 1
+    done
+  - |
+    export PGPASSWORD="$DB_PASS"
+    psql -h "$DB_HOST" -U "$DB_USER" -tc "SELECT 1 FROM pg_database WHERE datname = '$DB_NAME'" | grep -q 1 \
+      || psql -h "$DB_HOST" -U "$DB_USER" -c "CREATE DATABASE $DB_NAME;"
+
+install:
+  stage: install
+  script:
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1h
+
+lint:
+  stage: lint
+  dependencies: ["install"]
+  script:
+    - npx eslint "{src,apps,libs,test}/**/*.ts" --max-warnings=0
+
+build:
+  stage: build
+  dependencies: ["install"]
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1h
+
+test:
+  stage: test
+  dependencies: ["build"]
+  script:
+    - *before_db
+    - npm run test
+  artifacts:
+    when: always
+    paths:
+      - coverage/
+    expire_in: 1 week
+
+e2e:
+  stage: e2e
+  dependencies: ["build"]
+  script:
+    - *before_db
+    - npm run test:e2e
+
+migrate:
+  stage: migrate
+  dependencies: ["build"]
+  when: manual
+  script:
+    - *before_db
+    - npm run migration:run

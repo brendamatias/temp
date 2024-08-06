@@ -1,0 +1,64 @@
+## Estimated Hours per Module
+
+### Authentication & Users (Login)
+- Setup authentication in NestJS (JWT, bcrypt, guards, interceptors) → 6h  
+- Login screen in Angular (reactive form + validation) → 4h  
+- Frontend ↔ Backend integration (auth service, interceptors) → 4h  
+**Subtotal:** ~14h  
+
+### Preferences
+- Backend: CRUD for User Settings (MEI limit, notifications configuration) using NestJS + TypeORM → 6h  
+- Frontend: Preferences screen (forms, email/SMS toggle, limit input) → 6h  
+**Subtotal:** ~12h  
+
+### Partner Companies
+- Backend: CRUD for Partner Companies (NestJS + PostgreSQL) → 6h  
+- Frontend: List and create/edit screen (Angular + reactive forms + search by name/taxId) → 6h  
+**Subtotal:** ~12h  
+
+### Expense Categories
+- Backend: CRUD for Expense Categories → 4h  
+- Frontend: List, create/edit, archive categories → 5h  
+**Subtotal:** ~9h  
+
+### Invoices (NF)
+- Backend: CRUD for Invoices (validations: unique number per partner/year, referenceMonth = first day of month) → 6h  
+- Frontend: Create/Edit form + link to company (search by CNPJ/Name) → 6h  
+**Subtotal:** ~12h  
+
+### Expenses
+- Backend: CRUD for Expenses (optional link to partner company) → 6h  
+- Frontend: Create/Edit form + category and company selection → 6h  
+**Subtotal:** ~12h  
+
+### Dashboards
+- Backend: Views/queries for revenue, invoices per month, expenses per month, balance, expenses by category → 6h  
+- Frontend: Integration with chart library (e.g., ng2-charts or ngx-charts) + UI + year filter → 10h  
+**Subtotal:** ~16h  
+
+### Revenue Notifications
+- Backend: Logic for monthly limit calculation and 80% threshold alert (cron jobs, email/SMS integration) → 8h  
+- Frontend: Enable/disable alert settings (already included in Preferences)  
+**Subtotal:** ~8h  
+
+### Infrastructure / Setup / Extras
+- NestJS project setup (modules, configs, DB connection, migrations) → 4h  
+- Angular project setup (routing, services, state management, auth guard) → 5h  
+- Database migrations & seed scripts → 4h  
+- Basic testing (unit + integration: Jest for backend, Jasmine/Karma for frontend) → 6h  
+**Subtotal:** ~19h  
+
+---
+
+## Total Estimated Time
+- Authentication & Users: 14h  
+- Preferences: 12h  
+- Partner Companies: 12h  
+- Expense Categories: 9h  
+- Invoices: 12h  
+- Expenses: 12h  
+- Dashboards: 16h  
+- Notifications: 8h  
+- Infrastructure/Setup/Tests: 19h  
+
+**Total: ~94h**

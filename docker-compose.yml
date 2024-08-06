@@ -1,0 +1,127 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: nfmei_postgres
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${HOST_DB_PORT}:5432" 
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}   
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d postgres -h 127.0.0.1"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  db-bootstrap:
+    image: postgres:16-alpine
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env
+    entrypoint: ["sh","-c"]
+    command: |
+      set -e
+      until pg_isready -h postgres -p 5432 -U "$$DB_USER"; do sleep 1; done
+      DBURL="postgresql://$$DB_USER:$$DB_PASS@postgres:5432/postgres"
+      EXISTS=$$(psql "$$DBURL" -tAc "SELECT 1 FROM pg_database WHERE datname='$$DB_NAME'")
+      if [ "$$EXISTS" != "1" ]; then
+        psql "$$DBURL" -v ON_ERROR_STOP=1 -c "CREATE DATABASE \"$$DB_NAME\" OWNER \"$$DB_USER\""
+      fi
+      psql "postgresql://$$DB_USER:$$DB_PASS@postgres:5432/$$DB_NAME" -v ON_ERROR_STOP=1 -c "CREATE SCHEMA IF NOT EXISTS public AUTHORIZATION \"$$DB_USER\""
+    restart: "no"
+
+  migrate:
+    image: node:20-bookworm
+    container_name: nfmei_migrate
+    depends_on:
+      postgres:
+        condition: service_healthy
+      db-bootstrap:
+        condition: service_completed_successfully
+    working_dir: /app
+    volumes:
+      - ./backend/nfmei:/app
+      - nfmei_node_modules:/app/node_modules
+    env_file:
+      - ./.env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_SCHEMA: ${DB_SCHEMA}
+      DB_SSL: "false"
+      PGSSLMODE: "disable"
+      TS_NODE_TRANSPILE_ONLY: "1"
+    command: >
+      bash -lc "
+        if [ ! -d node_modules ] || [ -z \"$(ls -A node_modules 2>/dev/null)\" ]; then
+          (npm ci || npm install)
+        fi
+        npm run migration:run
+      "
+    restart: "no"
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: nfmei_pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env
+    ports:
+      - "127.0.0.1:5050:80"   
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
+    restart: unless-stopped
+
+  api:
+    image: node:20-bookworm
+    container_name: nfmei_api
+    working_dir: /app
+    volumes:
+      - ./backend/nfmei:/app
+      - nfmei_node_modules:/app/node_modules
+    env_file:
+      - ./.env
+    environment:
+      # Banco (rede interna do Docker)
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_SSL: "false"
+      PGSSLMODE: "disable"
+
+      # API
+      NODE_ENV: development
+      APP_PORT: 3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      db-bootstrap:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:3000:3000"    # acesse http://localhost:3000
+    command: >
+      bash -lc "
+        if [ ! -d node_modules ] || [ -z \"$(ls -A node_modules 2>/dev/null)\" ]; then
+          (npm ci || npm install)
+        fi
+        npm run start:dev
+      "
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  nfmei_node_modules:
+  pgadmin_data:
