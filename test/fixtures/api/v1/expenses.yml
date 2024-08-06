@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 9.99
+  description: MyString
+  accrual_date: 2023-03-11
+  transaction_date: 2023-03-11
+  customer_id: 1
+
+two:
+  amount: 9.99
+  description: MyString
+  accrual_date: 2023-03-11
+  transaction_date: 2023-03-11
+  customer_id: 1

@@ -1,0 +1,2 @@
+class TotalRevenue < ApplicationRecord
+end

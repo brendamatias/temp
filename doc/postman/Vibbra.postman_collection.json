@@ -1,0 +1,1080 @@
+{
+	"info": {
+		"_postman_id": "b4d10c1a-ce7c-42d2-83ea-615a5b8d5594",
+		"name": "Vibbra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10287332"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "01-Customer",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "customer[cnpj]",
+											"value": "30.441.755/0001-92",
+											"type": "text"
+										},
+										{
+											"key": "customer[commercial_name]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "customer[legal_name]",
+											"value": "Novo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "customer[amount]",
+											"value": "16.00",
+											"type": "text"
+										},
+										{
+											"key": "customer[invoice_id]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "customer[description]",
+											"value": "Novo2",
+											"type": "text"
+										},
+										{
+											"key": "customer[accrual_date]",
+											"value": "2022-03-05",
+											"type": "text"
+										},
+										{
+											"key": "customer[transaction_date]",
+											"value": "2022-03-05",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "customer[name]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "customer[cnpj]",
+											"value": "30441755000192",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/customers/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "02-Categories",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category[name]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "category[description]",
+											"value": "Novo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/categories",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/categories/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/categories?name=Novo",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Novo"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "archives_put",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category[name]",
+											"value": "Novo5",
+											"type": "text"
+										},
+										{
+											"key": "category[description]",
+											"value": "Novo4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/categories/1/archives/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"1",
+										"archives",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category[name]",
+											"value": "Novo2",
+											"type": "text"
+										},
+										{
+											"key": "category[description]",
+											"value": "Novo3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/categories/1/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "03-Users",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fiscal_year",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/users?name=Teste&username=teste&email=teste@teste.com&password=123456&password_confirmation=123456",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Teste"
+										},
+										{
+											"key": "username",
+											"value": "teste"
+										},
+										{
+											"key": "email",
+											"value": "teste@teste.com"
+										},
+										{
+											"key": "password",
+											"value": "123456"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "teste@teste.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/auth/login",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "authenticate_jwt",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "teste@teste.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/users/teste",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"users",
+										"teste"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "04-Revenue",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "revenue[amount]",
+											"value": "0.0",
+											"type": "text"
+										},
+										{
+											"key": "revenue[invoice_id]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "revenue[description]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "revenue[accrual_date]",
+											"value": "2022-01-01",
+											"type": "text"
+										},
+										{
+											"key": "revenue[transaction_date]",
+											"value": "2022-01-01",
+											"type": "text"
+										},
+										{
+											"key": "revenue[customer_id]",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/revenues",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"revenues"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "revenue[amount]",
+											"value": "16.00",
+											"type": "text"
+										},
+										{
+											"key": "revenue[invoice_id]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "revenue[description]",
+											"value": "Novo2",
+											"type": "text"
+										},
+										{
+											"key": "revenue[accrual_date]",
+											"value": "2022-03-05",
+											"type": "text"
+										},
+										{
+											"key": "revenue[transaction_date]",
+											"value": "2022-03-05",
+											"type": "text"
+										},
+										{
+											"key": "revenue[customer_id]",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/revenues/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"revenues",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "destroy",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "revenue[amount]",
+											"value": "15.00",
+											"type": "text"
+										},
+										{
+											"key": "revenue[invoice_id]",
+											"value": "Novo",
+											"type": "text"
+										},
+										{
+											"key": "revenue[description]",
+											"value": "Novo2",
+											"type": "text"
+										},
+										{
+											"key": "revenue[accrual_date]",
+											"value": "2022-03-05",
+											"type": "text"
+										},
+										{
+											"key": "revenue[transaction_date]",
+											"value": "2022-03-05",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/revenues/6",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"revenues",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "05-Expense",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "expense[amount]",
+											"value": "1.0"
+										},
+										{
+											"key": "expense[description]",
+											"value": "Novo"
+										},
+										{
+											"key": "expense[accrual_date]",
+											"value": "2023-03-12"
+										},
+										{
+											"key": "expense[transaction_date]",
+											"value": "2023-03-12"
+										},
+										{
+											"key": "expense[customer_id]",
+											"value": "1"
+										},
+										{
+											"key": "expense[category_id]",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/expenses?expense[amount]=1.0&expense[description]=Novo&expense[accrual_date]=2023-03-12&expense[transaction_date]=2023-03-12&expense[customer_id]=1&expense[category_id]=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"expenses"
+									],
+									"query": [
+										{
+											"key": "expense[amount]",
+											"value": "1.0"
+										},
+										{
+											"key": "expense[description]",
+											"value": "Novo"
+										},
+										{
+											"key": "expense[accrual_date]",
+											"value": "2023-03-12"
+										},
+										{
+											"key": "expense[transaction_date]",
+											"value": "2023-03-12"
+										},
+										{
+											"key": "expense[customer_id]",
+											"value": "1"
+										},
+										{
+											"key": "expense[category_id]",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "expense[amount]",
+											"value": "1.0"
+										},
+										{
+											"key": "expense[description]",
+											"value": "Novo"
+										},
+										{
+											"key": "expense[accrual_date]",
+											"value": "2023-03-12"
+										},
+										{
+											"key": "expense[transaction_date]",
+											"value": "2023-03-12"
+										},
+										{
+											"key": "expense[customer_id]",
+											"value": "1"
+										},
+										{
+											"key": "expense[category_id]",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/expenses/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"expenses",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "Authorization",
+											"value": "{{token_vibbra}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/expenses/2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"expenses",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "06-Settings",
+					"item": [
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fiscal_year",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/api/v1/settings/1",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"settings",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fiscal_year",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/api/v1/settings/1",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"settings",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "07-Reports",
+					"item": [
+						{
+							"name": "total-revenue",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fiscal_year",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/api/v1/reports/total-revenue",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"total-revenue"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "revenue-by-customer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fiscal_year",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/api/v1/reports/revenue-by-customer/",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"revenue-by-customer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "revenue-by-month",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_vibbra}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fiscal_year",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url_vibbra}}/api/v1/reports/revenue-by-month/",
+									"host": [
+										"{{url_vibbra}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"revenue-by-month",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cnpj: MyString
+  commercial_name: MyString
+  legal_name: MyString
+
+two:
+  cnpj: MyString
+  commercial_name: MyString
+  legal_name: MyString
