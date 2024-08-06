@@ -1,0 +1,37 @@
+/* login.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+}
+
+.login-box {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.input-group-text {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #0a58ca;
+}
