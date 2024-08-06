@@ -1,0 +1,38 @@
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_REF_PROTECTED == "true"
+
+
+.parse_variables: &parse_variables
+  before_script:
+    - apk add gettext
+    - |
+      if [ "$CI_COMMIT_REF_NAME" == "main" ]; then
+        KUBECONFIG_DATA=$KUBECONFIG_DATA_PRD
+        ENVIRONMENT_SUFFIX=""
+        TS_ROUTES=$TS_ROUTES_AHSOKA
+      else
+        KUBECONFIG_DATA=$KUBECONFIG_DATA_DEV
+        ENVIRONMENT_SUFFIX="-dev"
+        TS_ROUTES=$TS_ROUTES_WINDU
+      fi
+
+
+stages:
+  - push
+  - publish
+  
+push:
+  stage: push
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest -f Dockerfile.prd .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE:latest

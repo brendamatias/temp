@@ -1,0 +1,220 @@
+/* Estilos para alertas AJAX */
+#alertContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 400px;
+}
+
+#alertContainer .alert {
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Estilos para botões de loading */
+.btn .spinner-border-sm {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+/* Estilos para modais */
+.modal-content {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+/* Animação para campos condicionais */
+#bidValueSection, #bidTradeSection {
+    transition: all 0.3s ease;
+}
+
+/* Melhoria visual para badges */
+.badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Estilo para cards de ofertas e mensagens */
+.card.shadow {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card.shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Estilo para botões de ação */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Responsividade para alertas */
+@media (max-width: 768px) {
+    #alertContainer {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
+
+/* Estilo para formulários */
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Estilo para divisores */
+hr {
+    margin: 1.5rem 0;
+    opacity: 0.1;
+}
+
+/* Estilo para botões primários */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    transform: translateY(-1px);
+}
+
+/* Estilo para botões de outline */
+.btn-outline-primary {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.btn-outline-primary:hover {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+/* Animação para cards */
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+/* Efeitos para botões */
+.btn-clicked {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Validação em tempo real */
+.is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+/* Responsividade dos modais */
+@media (max-width: 767.98px) {
+    .modal-fullscreen-sm-down {
+        max-width: none;
+        margin: 0;
+        height: 100%;
+    }
+    
+    .modal-fullscreen-sm-down .modal-content {
+        height: 100%;
+        border: 0;
+        border-radius: 0;
+    }
+    
+    .modal-fullscreen-sm-down .modal-header {
+        border-radius: 0;
+    }
+    
+    .modal-fullscreen-sm-down .modal-footer {
+        border-radius: 0;
+    }
+}
+
+/* Melhorias para tooltips */
+.tooltip {
+    font-size: 0.875rem;
+}
+
+.tooltip-inner {
+    max-width: 200px;
+    padding: 0.5rem 0.75rem;
+    background-color: #495057;
+    border-radius: 0.375rem;
+}
+
+/* Animações suaves para alertas */
+.alert {
+    transition: all 0.3s ease;
+}
+
+.alert.fade-out {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+/* Melhorias para campos de formulário */
+.form-control:focus,
+.form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Efeitos para botões de loading */
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.btn .spinner-border-sm {
+    margin-right: 0.5rem;
+}
